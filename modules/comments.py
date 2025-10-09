@@ -7,19 +7,19 @@ class Comments:
         self.iter_connections = iter_connections
         self.parts_expr = parts_expr
 
-    def generate(self) -> Iterator[str]:
-        """Genera cada comentario combinando la expresión con las conexiones."""
+    def generate(self) -> Iterator[tuple[str, List[str]]]:
+        """Genera cada comentario junto con los usuarios utilizados."""
 
         last_part = self.parts_expr[-1]
 
         while True:
             if len(self.parts_expr) == 1:
-                yield last_part
+                yield last_part, []
             else:
                 try:
-                    users = next(self.iter_connections)
+                    users = list(next(self.iter_connections))
                 except StopIteration:
                     return
 
                 comment = ''.join(chain.from_iterable(zip(self.parts_expr, users)))
-                yield (comment + last_part).replace(r'\@', '@')
+                yield (comment + last_part).replace(r'\@', '@'), users

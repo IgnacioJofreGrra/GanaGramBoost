@@ -57,7 +57,17 @@ class Browser:
         else:
             service = Service(ChromeDriverManager().install())
 
-        self.driver = webdriver.Chrome(service=service, options=options)
+        try:
+            self.driver = webdriver.Chrome(service=service, options=options)
+        except TypeError:
+            service_path = getattr(service, "path", None) or getattr(service, "exe_path", None)
+            if not service_path:
+                raise
+
+            try:
+                self.driver = webdriver.Chrome(executable_path=service_path, options=options)
+            except TypeError:
+                self.driver = webdriver.Chrome(executable_path=service_path, chrome_options=options)
 
 
 class Tab:

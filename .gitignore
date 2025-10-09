@@ -1,0 +1,6 @@
+# Runtime artifacts and sensitive data
+__pycache__/
+modules/__pycache__/
+*.pyc
+cookies/
+records/
