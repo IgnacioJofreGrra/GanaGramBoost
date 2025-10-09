@@ -47,6 +47,19 @@ python -m venv .venv
 
 > Ajusta las rutas si tu entorno virtual se encuentra en otra ubicación o si utilizas `py`/`python3` en lugar de `python`.
 
+## Interfaz gráfica (GUI)
+Desde la rama `GUI` puedes abrir una interfaz gráfica básica para gestionar la configuración y lanzar el bot sin usar la terminal.
+
+```powershell
+& ".\.venv\Scripts\python.exe" gui.py
+```
+
+Funciones principales de la GUI:
+
+- Edita y guarda los parámetros de `config.ini` con campos y casillas de verificación.
+- Ejecuta `script.py` en un subproceso y muestra la salida en tiempo real.
+- Permite detener la ejecución desde la misma ventana.
+
 ## Configuración (`config.ini`)
 Todas las credenciales y ajustes del bot se controlan desde `config.ini`.
 
